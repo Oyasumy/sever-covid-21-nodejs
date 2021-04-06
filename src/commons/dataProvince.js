@@ -1,7 +1,7 @@
 const data = [
   { title: "Hai Duong", data: [20.94099, 106.33302] },
   { title: "Da Nang", data: [16.06778, 108.22083] },
-  { title: "HaNoi", data: [21.0245, 105.84117] },
+  { title: "Ha Noi", data: [21.0245, 105.84117] },
   { title: "Ho Chi Minh City", data: [10.82302, 106.62965] },
   { title: "Quang Nam", data: [16.06, 108.25] },
   { title: "Khanh Hoa", data: [12.25, 109.1833] },

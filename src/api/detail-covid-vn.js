@@ -5,11 +5,8 @@ const axios = require("axios").default;
 const cheerio = require("cheerio");
 const findProvince = require("../commons/dataProvince");
 const { compare, checkNumber } = require("../commons/index");
+const { baseURL, govURL, worldURL } = require("../commons/baseURL");
 const router = express.Router();
-
-const baseURL = "https://www.statista.com/statistics/1103568/vietnam-coronavirus-cases-by-region/";
-const govURL = "https://www.worldometers.info/coronavirus/";
-const worldURL = "https://corona.lmao.ninja/v2/countries";
 
 router.get("/province", async (req, res, next) => {
   try {
@@ -107,13 +104,13 @@ router.get("/world", async (req, res, next) => {
           },
           activeCases: {
             currentlyInfectedPatients: 0,
-            inMildCondition: [0,0],
-            Serious: [0,0],
+            inMildCondition: [0, 0],
+            Serious: [0, 0],
           },
           closeCases: {
             outcome: 0,
-            Recovered: [0,0],
-            Deaths: [0,0],
+            Recovered: [0, 0],
+            Deaths: [0, 0],
           },
         };
 
@@ -137,7 +134,7 @@ router.get("/world", async (req, res, next) => {
         data.activeCases.inMildCondition[1] = $(rawMildPercent).text().replace(/,/g, "");
         data.activeCases.Serious[0] = $(rawSerious).text().replace(/,/g, "");
         data.activeCases.Serious[1] = $(rawSeriousPercent).text();
-       
+
         // close cases
         var rawCasesOutcome = $("body > div.container > div:nth-child(2) > div.col-md-8 > div > div:nth-child(15) > div > div.panel-body > div > div.panel_front > div.number-table-main");
         var rawRecovered = $("body > div.container > div:nth-child(2) > div.col-md-8 > div > div:nth-child(15) > div > div.panel-body > div > div.panel_front > div:nth-child(3) > div:nth-child(1) > span");
@@ -150,9 +147,6 @@ router.get("/world", async (req, res, next) => {
         data.closeCases.Recovered[1] = $(rawRecoveredPercent).text();
         data.closeCases.Deaths[0] = $(rawDead).text().replace(/[,\n]/g, "");
         data.closeCases.Deaths[1] = $(rawDeadPercent).text();
-
-
-       
 
         return res.send(data);
       })
