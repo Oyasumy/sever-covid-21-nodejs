@@ -30,7 +30,7 @@ router.get("/province", async (req, res, next) => {
 
           if ($(dataRow[i]).text() !== "") {
             obj.province = $(dataRow[i]).text();
-            obj.case = $(dataRow[i + 1]).text() || 0;
+            obj.case = parseInt($(dataRow[i + 1]).text()) || 0;
 
             // get positive
             var result = findProvince($(dataRow[i]).text());
