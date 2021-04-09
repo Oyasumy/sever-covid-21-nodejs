@@ -61,7 +61,7 @@ router.get("/country/:id", async (req, res, next) => {
     axios
       .get(`${worldURL}/${id}`)
       .then((response) => {
-        return res.send(response.data);
+        return res.send([response.data]);
       })
       .catch((err) => next(err));
   } catch (error) {
@@ -148,7 +148,7 @@ router.get("/world", async (req, res, next) => {
         data.closeCases.Deaths[0] = $(rawDead).text().replace(/[,\n]/g, "");
         data.closeCases.Deaths[1] = $(rawDeadPercent).text();
 
-        return res.send(data);
+        return res.send([data]);
       })
 
       .catch((er) => {
